@@ -2,4 +2,4 @@
 
 Neste projeto eu recriei o jogo Space Shooter com base no projeto disponível na Digital Innovation One.
 
-<img src = '.img/cover.png'>
+<img src = 'img/cover.png'>
