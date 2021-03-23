@@ -64,6 +64,15 @@ function createLaserElement() {
 function moveLaser(laser) {
     let laserInterval = setInterval(() => {
         let xPosition = parseInt(laser.style.left);
+        let aliens = document.querySelectorAll('.alien');
+
+        aliens.forEach((alien) => { //comparando se cada alien foi atingido, se sim troca o src
+            if(checkLaserCollision(laser, alien)){
+                alien.src = 'img/explosion.png';
+                alien.classList.remove('alien');
+                alien.classList.add('dead-alien');
+            }
+        })
 
         if(xPosition === 340) {
             laser.remove();
@@ -94,7 +103,7 @@ function moveAlien(alien) {
             if(Array.from(alien.classList).includes('dead-alien')) {
                 alien.remove();
             } else {
-                //gameOver();
+                gameOver();
             } 
         } else {
             alien.style.left = `${xPosition - 4}px`;
@@ -123,3 +132,4 @@ function checkLaserCollision(laser, alien) {
 
 
 window.addEventListener('keydown', flyShip);
+createAliens();
