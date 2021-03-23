@@ -34,12 +34,12 @@ function moveUp() {
 //descer o heroi
 function moveDown() {
     let topPosition = getComputedStyle(yourShip).getPropertyValue('top');
-    if(topPosition === "550px"){
+    if(topPosition === "510px"){
         return
     } else {
         let position = parseInt(topPosition);
         position += 50;
-        yourShip.style.top = `${position}px`
+        yourShip.style.top = `${position}px`;
     }
 }
 
@@ -69,8 +69,8 @@ function moveLaser(laser) {
         let xPosition = parseInt(laser.style.left);
         let aliens = document.querySelectorAll('.alien');
 
-        aliens.forEach((alien) => { //comparando se cada alien foi atingido, se sim troca o src
-            if(checkLaserCollision(laser, alien)){
+        aliens.forEach((alien) => { //comparando se cada alien foi atingido, se sim, troca o src da imagem
+            if(checkLaserCollision(laser, alien)) {
                 alien.src = 'img/explosion.png';
                 alien.classList.remove('alien');
                 alien.classList.add('dead-alien');
@@ -88,12 +88,12 @@ function moveLaser(laser) {
 //criação da aparição dos inimigos
 function createAliens() {
     let newAlien = document.createElement('img');
-    let alienSprite = aliensImg[Math.floor(Math.random() * aliensImg.length)]; //sorteio
+    let alienSprite = aliensImg[Math.floor(Math.random() * aliensImg.length)]; //sorteio de imagens
     newAlien.src = alienSprite;
     newAlien.classList.add('alien');
     newAlien.classList.add('alien-transition');
     newAlien.style.left = '370px';
-    newAlien.style.top = `${Math.floor(Math.random() * 330) + 30}`;
+    newAlien.style.top = `${Math.floor(Math.random() * 330) + 30}px`;
     playArea.appendChild(newAlien);
     moveAlien(newAlien);
 }
@@ -107,7 +107,7 @@ function moveAlien(alien) {
                 alien.remove();
             } else {
                 gameOver();
-            } 
+            }
         } else {
             alien.style.left = `${xPosition - 4}px`;
         }
@@ -136,7 +136,7 @@ function checkLaserCollision(laser, alien) {
 //iniciando o jogo
 startButton.addEventListener('click', (event) => {
     playGame();
-});
+})
 
 function playGame() {
     startButton.style.display = 'none';
